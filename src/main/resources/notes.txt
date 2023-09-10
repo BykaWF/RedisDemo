@@ -1,0 +1,7 @@
+Client       -------------->   Redis server
+
+redis-cli(our local)            redis-cli (host, post,auth)
+
+(Java app)
+  - lettuce
+  - jedis
