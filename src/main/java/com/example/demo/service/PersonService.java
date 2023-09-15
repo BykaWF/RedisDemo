@@ -29,11 +29,19 @@ public class PersonService {
         personRepo.lpush(person);
     }
 
-    public void lpop(){
-        personRepo.lpop();
+    public List<Person> lpop(long count){
+        return personRepo.lpop(count);
     }
 
     public List<Person> lrange(int start, int end){
         return personRepo.lrange(start,end);
+    }
+
+    public void rpush(Person person){
+        personRepo.rpush(person);
+    }
+
+    public List<Person> rpop(long count){
+        return personRepo.rpop(count);
     }
 }

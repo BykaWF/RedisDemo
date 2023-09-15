@@ -39,15 +39,22 @@ public class PersonRepo {
         this.redisTemplate.opsForList().leftPush(PERSON_L,person);
     }
 
-    public void lpop() {
-        this.redisTemplate.opsForList().leftPop(PERSON_L);
+    /**
+     * Time complexity: O(N) where N is the number of elements returned
+     * @return  Removes and returns the first elements of the list stored at key.
+     *
+     * By default, the command pops a single element from the beginning of the list.
+     * When provided with the optional count argument, the reply will consist of up to count elements, depending on the list's length.
+     */
+    public List<Person> lpop(long count) {
+        return this.redisTemplate.opsForList().leftPop(PERSON_L, count);
     }
 
     public void rpush(Person person){
         this.redisTemplate.opsForList().rightPush(PERSON_L,person);
     }
-    public void rpop(){
-        this.redisTemplate.opsForList().rightPop(PERSON_L);
+    public List<Person> rpop(long count){
+        return this.redisTemplate.opsForList().rightPop(PERSON_L,count);
     }
 
     public List<Person> lrange(int start, int end){
