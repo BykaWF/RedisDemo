@@ -17,14 +17,15 @@ import java.util.UUID;
 public class CreatePersonRequest {
     @NotBlank
     private String name;
+    @NotBlank
     private String age;
-    private String id;
+
 
     public Person toPerson(){
         return Person.builder()
                 .age(this.age)
-                .id(this.id)
                 .name(this.name)
+                .id(UUID.randomUUID().toString())
                 .build();
     }
 }

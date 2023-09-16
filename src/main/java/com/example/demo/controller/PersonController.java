@@ -32,7 +32,6 @@ public class PersonController {
      * List operations
      */
 
-
     @PostMapping("/lpush")
     public void createListPerson(@RequestBody @Valid CreatePersonRequest createPersonRequest){
         personService.lpush(createPersonRequest.toPerson());
@@ -75,4 +74,27 @@ public class PersonController {
     public List<Person> deleteRightPop(@RequestParam(name = "count", required = false, defaultValue = "1") long count){
         return personService.rpop(count);
     }
+
+    /**
+     * Hash operation
+     */
+
+    //set  /get/  delete
+
+    /**
+     * Sets the specified fields to their respective values in the hash stored at key.
+     *
+     * This command overwrites the values of specified fields that exist in the hash. If key doesn't exist, a new key holding a hash is created.
+     *
+     */
+    @PostMapping("/hset")
+    public void addToHashPerson(@RequestBody @Valid CreatePersonRequest createPersonRequest){
+        personService.addToHash(createPersonRequest.toPerson());
+    }
+
+    @GetMapping("/hgetAll/{personId}")
+    public Person getPersonFromHash(@PathVariable("personId") String personId){
+        return personService.getPersonFromHash(personId);
+    }
+
 }

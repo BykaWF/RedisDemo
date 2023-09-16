@@ -44,4 +44,13 @@ public class PersonService {
     public List<Person> rpop(long count){
         return personRepo.rpop(count);
     }
+    
+    //HASH OPERATIONS
+    public void addToHash(Person person){
+        personRepo.hset(person);
+    }
+
+    public Person getPersonFromHash(String personId){
+        return personRepo.hgetAll(personId);
+    }
 }
